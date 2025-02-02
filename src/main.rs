@@ -41,7 +41,7 @@ async fn main() -> Result<()> {
                 }
                 println!("=========== \n");
             }
-            tokio::time::sleep(Duration::from_secs(5)).await;
+            tokio::time::sleep(Duration::from_secs(1)).await;
         }
     });
 
