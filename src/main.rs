@@ -30,15 +30,23 @@ async fn main() -> Result<()> {
         let store = Arc::clone(&mm.pings_count);
 
         loop {
-            for (key, value) in store.read().await.iter() {
-                println!("{}: {}", key, value);
+            {
+                let a = store.read().await;
+                println!("IPs: ");
+                let mut v = Vec::from_iter(a.iter());
+                v.sort_by(|&(_, a), &(_, b)| b.cmp(a));
+
+                for (ip, count) in v.iter() {
+                    println!("{}: {}", ip, count);
+                }
+                println!("=========== \n");
             }
-            tokio::time::sleep(Duration::from_secs(5)).await
+            tokio::time::sleep(Duration::from_secs(5)).await;
         }
     });
 
     let _ = tokio::join!(one, two);
-    
+
     Ok(())
 }
 

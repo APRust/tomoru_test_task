@@ -1,6 +1,5 @@
 //! Model Layer
 
-// region:    --- Modules
 mod error;
 
 pub use self::error::{Error, Result};
@@ -8,7 +7,6 @@ use std::collections::HashMap;
 use std::net::IpAddr;
 use std::sync::Arc;
 use tokio::sync::RwLock;
-// endregion: --- Modules
 
 #[derive(Clone, Debug)]
 pub struct ModelManager {
